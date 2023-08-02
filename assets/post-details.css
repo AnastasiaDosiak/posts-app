@@ -1,0 +1,34 @@
+.post-card {
+    border-radius: 1rem;
+    margin-bottom: 20px;
+}
+
+.user-info {
+    display: flex;
+    margin-top: 1rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.post-content {
+    flex: 1;
+}
+
+.reactions {
+    font-weight: bold;
+    display: flex;
+    margin-top: 1rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.tags {
+    display: flex;
+    margin-top: 1rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.user-info-text {
+    margin-right: 1rem;
+}

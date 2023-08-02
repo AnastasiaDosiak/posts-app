@@ -1,5 +1,5 @@
 <template>
-  <div id="detail">
+  <div id="post-detail">
     <PostDetail />
   </div>
 </template>
