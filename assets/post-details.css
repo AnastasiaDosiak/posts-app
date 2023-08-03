@@ -32,3 +32,10 @@
 .user-info-text {
     margin-right: 1rem;
 }
+
+.empty-container{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
