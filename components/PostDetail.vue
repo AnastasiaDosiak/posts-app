@@ -27,8 +27,8 @@
 
 
 <script setup>
-import {useCounterStore} from "~/stores/posts";
-const store = useCounterStore();
+import {usePostsStore} from "~/stores/posts";
+const store = usePostsStore();
 const { setActivePost } = store;
 const route = useRoute()
 const postIdInRoute = route.params.id;

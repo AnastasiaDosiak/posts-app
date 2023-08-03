@@ -42,9 +42,9 @@
 
 
 <script setup>
-import {useCounterStore} from "~/stores/posts";
+import {usePostsStore} from "~/stores/posts";
 import {truncateText} from "~/utils/utils";
-const store = useCounterStore();
+const store = usePostsStore();
 const {setAvailablePosts, availablePosts, setSearchValue} = store
 const router = useRouter();
 const postsSkip = ref(0);

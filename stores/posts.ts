@@ -10,7 +10,7 @@ interface PostInterface {
     tags: string[];
 }
 
-export const useCounterStore = defineStore('posts', {
+export const usePostsStore = defineStore('posts', {
     state: () => ({
         availablePosts: [] as PostInterface[],
         activePost: null as PostInterface | null, // Initialize post with null or PostInterface
