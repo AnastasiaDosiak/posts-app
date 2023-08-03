@@ -5,38 +5,38 @@
         <h1 class="mt-5 mb-3">Posts List</h1>
       </a-col>
       <a-col :span="12" class="col">
-        <a-input-search
-            v-model:value="store.searchValue"
-            placeholder="search a post..."
-            class="input"
-            @change="setSearchValue($event.target.value)"
-            @search="fetchPosts(0)"
-        />
+<!--        <a-input-search-->
+<!--            v-model:value="store.searchValue"-->
+<!--            placeholder="search a post..."-->
+<!--            class="input"-->
+<!--            @change="setSearchValue($event.target.value)"-->
+<!--            @search="fetchPosts(0)"-->
+<!--        />-->
       </a-col>
     </a-row>
     <div class="spinner-border">
-      <a-spin :spinning="store.pending" size="large" />
+<!--      <a-spin :spinning="store.pending" size="large" />-->
     </div>
-    <template v-if="store.availablePosts.length > 0">
-      <a-row :gutter="[24, 24]">
-        <a-col :md="12" :lg="8" v-for="post in store.availablePosts" :key="post.id">
-          <a-card class="post-card" @click="redirectToPost(post.id)">
-            <a-card-meta :title="post.title" :description="truncateText(post.body)">
-              <template #avatar>
-                <a-avatar src="https://picsum.photos/id/505/200/300" />
-              </template>
-            </a-card-meta>
-            <a-tag v-for="tag in post.tags" :key="tag" color="pink">{{ tag }}</a-tag>
-          </a-card>
-        </a-col>
-      </a-row>
-      <div class="pagination">
-        <a-pagination  :showSizeChanger="false" :current="currentPage" :total="store.totalPosts" @change="handlePageChange" :pageSize="12" show-less-items />
-      </div>
-    </template>
-    <template v-if="!store.pending && store.noData">
-      <a-empty />
-    </template>
+<!--    <template v-if="store.availablePosts.length > 0">-->
+<!--      <a-row :gutter="[24, 24]">-->
+<!--        <a-col :md="12" :lg="8" v-for="post in store.availablePosts" :key="post.id">-->
+<!--          <a-card class="post-card" @click="redirectToPost(post.id)">-->
+<!--            <a-card-meta :title="post.title" :description="truncateText(post.body)">-->
+<!--              <template #avatar>-->
+<!--                <a-avatar src="https://picsum.photos/id/505/200/300" />-->
+<!--              </template>-->
+<!--            </a-card-meta>-->
+<!--            <a-tag v-for="tag in post.tags" :key="tag" color="pink">{{ tag }}</a-tag>-->
+<!--          </a-card>-->
+<!--        </a-col>-->
+<!--      </a-row>-->
+<!--      <div class="pagination">-->
+<!--        <a-pagination  :showSizeChanger="false" :current="currentPage" :total="store.totalPosts" @change="handlePageChange" :pageSize="12" show-less-items />-->
+<!--      </div>-->
+<!--    </template>-->
+<!--    <template v-if="!store.pending && store.noData">-->
+<!--      <a-empty />-->
+<!--    </template>-->
   </div>
 </template>
 
