@@ -49,7 +49,7 @@
       <div class="pagination">
         <a-pagination
           :showSizeChanger="false"
-          :current="currentPage"
+          :current="currentPage.value"
           :total="store.totalPosts"
           @change="handlePageChange"
           :pageSize="12"
