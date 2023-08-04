@@ -10,10 +10,10 @@ interface PostInterface {
     tags: string[];
 }
 
-export const usePostsStore = defineStore('posts', {
+export const usePostsStore = (getPostsApi = getPosts, getPostByIdApi = getPostById) => defineStore('posts', {
     state: () => ({
         availablePosts: [] as PostInterface[],
-        activePost: null as PostInterface | null, // Initialize post with null or PostInterface
+        activePost: null as PostInterface | null,
         totalPosts: 0,
         pending: true,
         noData: false,
@@ -24,7 +24,7 @@ export const usePostsStore = defineStore('posts', {
           this.searchValue = value;
         },
         async setAvailablePosts(skip: number) {
-            const {posts, total} = await getPosts(this.searchValue, skip) as {posts: PostInterface[], total: number};
+            const {posts, total} = await getPostsApi(this.searchValue, skip) as {posts: PostInterface[], total: number};
             this.availablePosts = posts;
             this.totalPosts = total;
             this.noData = posts.length === 0;
@@ -33,7 +33,7 @@ export const usePostsStore = defineStore('posts', {
         async setActivePost(passedPostId: string) {
             let foundPost = this.availablePosts.find((post) => post.id === passedPostId);
             if (!foundPost) {
-                foundPost = await getPostById(passedPostId) as PostInterface;
+                foundPost = await getPostByIdApi(passedPostId) as PostInterface;
             }
             this.activePost = foundPost ?? null;
             this.pending = false;

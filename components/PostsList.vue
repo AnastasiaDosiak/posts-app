@@ -44,8 +44,8 @@
 <script setup>
 import {usePostsStore} from "~/stores/posts";
 import {truncateText} from "~/utils/utils";
-const store = usePostsStore();
-const {setAvailablePosts, availablePosts, setSearchValue} = store
+const store = usePostsStore()();
+const {setAvailablePosts, availablePosts, setSearchValue} = store;
 const router = useRouter();
 const postsSkip = ref(0);
 const currentPage = ref(1);
