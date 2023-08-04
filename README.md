@@ -18,9 +18,13 @@ The project is built using the following technologies:
 ## API
 
 The web application uses the Dummy Rest API service, which provides the following endpoints for posts:
+Getting Posts and search by provided query:
+    
+    https://dummyjson.com/posts/search?q=<search value>&limit=<given limit>&skip=<given skip>
 
-    Getting Posts and search by provided query: https://dummyjson.com/posts/search?q=<search value>&limit=<given limit>&skip=<given skip>
-    Get Post by ID: https://dummyjson.com/posts/<postId>
+Get Post by ID: 
+
+     https://dummyjson.com/posts/<postId>
 
 ## Running the project 🏃
 
