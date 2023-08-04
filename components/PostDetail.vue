@@ -1,12 +1,18 @@
 <template>
-  <div class="container mt-4" v-if="!!store.activePost && !store.pending">
+  <div v-if="!!store.activePost && !store.pending" class="container mt-4">
     <a-card class="post-card">
       <div class="post-content">
-        <h1 class="mt-5 mb-3">{{ store.activePost.title }}</h1>
-        <p class="body-text">{{ store.activePost.body }}</p>
+        <h1 class="mt-5 mb-3">
+          {{ store.activePost.title }}
+        </h1>
+        <p class="body-text">
+          {{ store.activePost.body }}
+        </p>
         <div class="d-flex justify-content-between">
           <div class="tags">
-            <a-tag v-for="tag in store.activePost.tags" :key="tag" color="pink">{{ tag }}</a-tag>
+            <a-tag v-for="tag in store.activePost.tags" :key="tag" color="pink">
+              {{ tag }}
+            </a-tag>
           </div>
           <div class="reactions">
             Reactions: {{ store.activePost.reactions }}
@@ -24,13 +30,11 @@
   </div>
 </template>
 
-
-
 <script setup>
-import {usePostsStore} from "~/stores/posts";
+import { usePostsStore } from '~/stores/posts';
 const store = usePostsStore()();
 const { setActivePost } = store;
-const route = useRoute()
+const route = useRoute();
 const postIdInRoute = route.params.id;
 
 onMounted(() => {
@@ -45,5 +49,4 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style src="assets/post-details.css" scoped/>
-
+<style src="assets/post-details.css" scoped />

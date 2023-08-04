@@ -8,23 +8,22 @@ import { mount } from '@vue/test-utils';
 vi.mock('vue-router');
 
 describe('PostsList', () => {
-    useRouter.mockReturnValue({
-        push: vi.fn(),
-    });
-    beforeEach(() => {
-        useRouter().push.mockReset();
-    });
+  useRouter.mockReturnValue({
+    push: vi.fn(),
+  });
+  beforeEach(() => {
+    useRouter().push.mockReset();
+  });
 
-    beforeAll(() => {
-        vi.mock("next/router", () => require("next-router-mock"));
-    });
+  beforeAll(() => {
+    vi.mock('next/router', () => require('next-router-mock'));
+  });
 
-    test('it mounts', () => {
-        const app = createApp(PostsList);
-        app.mount("#container");
-        app.use(createTestingPinia());
-        const wrapper = mount(app);
-        expect(wrapper.vm).toBeTruthy();
-    });
-
+  test('it mounts', () => {
+    const app = createApp(PostsList);
+    app.mount('#container');
+    app.use(createTestingPinia());
+    const wrapper = mount(app);
+    expect(wrapper.vm).toBeTruthy();
+  });
 });

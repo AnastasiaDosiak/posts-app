@@ -6,11 +6,11 @@
       </a-col>
       <a-col :span="12" class="col">
         <a-input-search
-            v-model:value="store.searchValue"
-            placeholder="search a post..."
-            class="input"
-            @change="setSearchValue($event.target.value)"
-            @search="fetchPosts(0)"
+          v-model:value="store.searchValue"
+          placeholder="search a post..."
+          class="input"
+          @change="setSearchValue($event.target.value)"
+          @search="fetchPosts(0)"
         />
       </a-col>
     </a-row>
@@ -19,19 +19,36 @@
     </div>
     <template v-if="store.availablePosts.length > 0">
       <a-row :gutter="[24, 24]">
-        <a-col :md="12" :lg="8" v-for="post in store.availablePosts" :key="post.id">
+        <a-col
+          v-for="post in store.availablePosts"
+          :key="post.id"
+          :md="12"
+          :lg="8"
+        >
           <a-card class="post-card" @click="redirectToPost(post.id)">
-            <a-card-meta :title="post.title" :description="truncateText(post.body)">
+            <a-card-meta
+              :title="post.title"
+              :description="truncateText(post.body)"
+            >
               <template #avatar>
                 <a-avatar src="https://picsum.photos/id/505/200/300" />
               </template>
             </a-card-meta>
-            <a-tag v-for="tag in post.tags" :key="tag" color="pink">{{ tag }}</a-tag>
+            <a-tag :key="tag" v-for="tag in post.tags" color="pink">
+              {{ tag }}
+            </a-tag>
           </a-card>
         </a-col>
       </a-row>
       <div class="pagination">
-        <a-pagination  :showSizeChanger="false" :current="currentPage" :total="store.totalPosts" @change="handlePageChange" :pageSize="12" show-less-items />
+        <a-pagination
+          :showSizeChanger="false"
+          :current="currentPage"
+          :total="store.totalPosts"
+          @change="handlePageChange"
+          :pageSize="12"
+          show-less-items
+        />
       </div>
     </template>
     <template v-if="!store.pending && store.noData">
@@ -40,12 +57,11 @@
   </div>
 </template>
 
-
 <script setup>
-import {usePostsStore} from "~/stores/posts";
-import {truncateText} from "~/utils/utils";
+import { usePostsStore } from '~/stores/posts';
+import { truncateText } from '~/utils/utils';
 const store = usePostsStore()();
-const {setAvailablePosts, availablePosts, setSearchValue} = store;
+const { setAvailablePosts, availablePosts, setSearchValue } = store;
 const router = useRouter();
 const postsSkip = ref(0);
 const currentPage = ref(1);
@@ -57,17 +73,15 @@ const fetchPosts = async (skip) => {
   await setAvailablePosts(skip);
 };
 
-
 const handlePageChange = (newPage, pageSize) => {
   currentPage.value = newPage;
   postsSkip.value = (newPage - 1) * pageSize;
-  fetchPosts(postsSkip.value)
+  fetchPosts(postsSkip.value);
 };
 
 onMounted(() => {
   fetchPosts(postsSkip.value);
 });
-
 
 onUpdated(() => {
   if (availablePosts.length === 0) {
@@ -76,4 +90,4 @@ onUpdated(() => {
 });
 </script>
 
-<style src="../assets/posts-list.css" scoped/>
+<style src="../assets/posts-list.css" scoped />
