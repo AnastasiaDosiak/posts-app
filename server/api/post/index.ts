@@ -6,5 +6,6 @@ export async function getPostById(postId: string) {
     return response;
   } catch (error) {
     console.error('Error fetching post:', error);
+    return { isError: true };
   }
 }

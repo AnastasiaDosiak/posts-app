@@ -8,6 +8,13 @@ interface PostInterface {
   body: string;
   reactions: number;
   tags: string[];
+  isError?: boolean;
+}
+
+interface GetPostsApiInterface {
+  posts: PostInterface[];
+  total: number;
+  isError: boolean;
 }
 
 export const usePostsStore = (
@@ -22,19 +29,21 @@ export const usePostsStore = (
       pending: true,
       noData: false,
       searchValue: '',
+      error: false,
     }),
     actions: {
       setSearchValue(value: string) {
         this.searchValue = value;
       },
       async setAvailablePosts(skip: number) {
-        const { posts, total } = (await getPostsApi(
+        const response = (await getPostsApi(
           this.searchValue,
           skip
-        )) as { posts: PostInterface[]; total: number };
-        this.availablePosts = posts;
-        this.totalPosts = total;
-        this.noData = posts.length === 0;
+        )) as GetPostsApiInterface;
+        this.error = !!response.isError;
+        this.availablePosts = response.posts;
+        this.totalPosts = response.total;
+        this.noData = response.posts.length === 0;
         this.pending = false;
       },
       async setActivePost(passedPostId: string) {
@@ -44,6 +53,7 @@ export const usePostsStore = (
         if (!foundPost) {
           foundPost = (await getPostByIdApi(passedPostId)) as PostInterface;
         }
+        this.error = !!foundPost.isError;
         this.activePost = foundPost ?? null;
         this.pending = false;
         this.noData = !this.activePost;

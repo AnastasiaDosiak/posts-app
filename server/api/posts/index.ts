@@ -5,6 +5,7 @@ export async function getPosts(searchInputValue: string, skip: number) {
     const response = await $fetch(POSTS_API(searchInputValue, skip));
     return response;
   } catch (error) {
-    console.error('Error fetching posts:', error);
+    console.error('Error fetching post:', error);
+    return { isError: true };
   }
 }

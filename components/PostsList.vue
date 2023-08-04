@@ -1,4 +1,10 @@
 <template>
+  <div v-if="store.error">
+    <a-result
+      status="error"
+      title="There are some issues with fetching post."
+    />
+  </div>
   <div class="container">
     <a-row>
       <a-col :span="12">

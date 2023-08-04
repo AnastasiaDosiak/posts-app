@@ -1,5 +1,14 @@
 <template>
-  <div v-if="!!store.activePost && !store.pending" class="container mt-4">
+  <div v-if="store.error">
+    <a-result
+      status="error"
+      title="There are some issues with fetching posts."
+    />
+  </div>
+  <div
+    v-if="!!store.activePost && !store.pending && !store.error"
+    class="container mt-4"
+  >
     <a-card class="post-card">
       <div class="post-content">
         <h1 class="mt-5 mb-3">
